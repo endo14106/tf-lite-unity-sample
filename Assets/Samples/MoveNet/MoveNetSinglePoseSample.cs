@@ -1,5 +1,3 @@
-using System.Reflection.PortableExecutable;
-using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -87,7 +85,7 @@ private float th = 0.894f;
             drawer.DrawPose(pose, threshold);
             if (pose[5].score >= threshold && pose[9].score >= threshold && pose[15].score >= threshold)
             {
-                angle = CosCulc1(pose[9].x, pose[9].y, pose[5].x, pose[5].y, pose[15].x, pose[15].y);
+                float angle = CosCulc1(pose[9].x, pose[9].y, pose[5].x, pose[5].y, pose[15].x, pose[15].y);
                // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
                // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
                // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
