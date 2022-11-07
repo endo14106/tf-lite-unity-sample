@@ -47,7 +47,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         drawer?.Dispose();
     }
 
-     private int IniCheckTh(float cos, float th)
+     public static int IniCheckTh(float cos, float th)
         {
             if(cos <= th){
                 return 1;
@@ -57,7 +57,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
            }
         }
 
-        private int SinkCheckTh(float cos, float th)
+    public static int SinkCheckTh(float cos, float th)
         {
             if(cos >= th){
                 return 1;
@@ -66,27 +66,20 @@ public class MoveNetSinglePoseSample : MonoBehaviour
                 return 0;
             }
         }
+private float th = 0.894f;
 
     private void Update()
     {
         if (pose != null)
         {
             drawer.DrawPose(pose, threshold);
-            Debug.Log("左肩" + pose[5].x + "," + pose[5].y);
-            Debug.Log("左手首" + pose[9].x + "," + pose[9].y);
-            Debug.Log("左足首" + pose[15].x + "," + pose[15].y);
-            
-            float cos1 = 0.90;
-            float cos2 = 0.975;
-            float th1 = 0.91;
-            float th2 = 0.98;
-
-            if(IniCheckTh(cos1, th1) == 1){
-                
-                Debug.log("初期姿勢OK");
-            }
-            if(SinkCheckTh(cos2, th2) == 1){
-                Debug.log("最深姿勢OK");
+            if (pose[5].score >= threshold && pose[9].score >= threshold && pose[15].score >= threshold)
+            {
+                angle = CosCulc1(pose[9].x, pose[9].y, pose[5].x, pose[5].y, pose[15].x, pose[15].y);
+               // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
+               // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
+               // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
+                Debug.Log("cos = " + angle + " > " + th + " ? : " + SinkCheckTh(angle, th));
             }
         }
     }
