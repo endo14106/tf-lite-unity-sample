@@ -50,6 +50,10 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         if (pose != null)
         {
             drawer.DrawPose(pose, threshold);
+            Debug.Log("左肩" + pose[5].x + "," + pose[5].y);
+            Debug.Log("左手首" + pose[9].x + "," + pose[9].y);
+            Debug.Log("左足首" + pose[15].x + "," + pose[15].y);
+
         }
     }
 
