@@ -1,3 +1,5 @@
+using System.Reflection.PortableExecutable;
+using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -64,6 +66,18 @@ public class MoveNetSinglePoseSample : MonoBehaviour
                 return 0;
             }
         }
+
+    public static float CosCulc1 (float Ax, float Ay, float Bx, float By, float Cx, float Cy)
+    {
+        float CAx = Ax - Cx;
+        float CAy = Ay - Cy;
+        float CBx = Bx - Cx;
+        float CBy = By - Cy;
+
+        float cos = (CAx * CBx + CAy * CBy) / ((float)System.Math.Sqrt(CAx * CAx + CAy * CAy) * (float)System.Math.Sqrt(CBx * CBx + CBy * CBy));
+
+        return cos;
+    }
 private float th = 0.894f;
 
     private void Update()
