@@ -47,7 +47,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         drawer?.Dispose();
     }
 
-     public static int IniCheckTh(float cos, float th)
+     private int IniCheckTh(float cos, float th)
         {
             if(cos <= th){
                 return 1;
@@ -57,7 +57,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
            }
         }
 
-        public static int SinkCheckTh(float cos, float th)
+        private int SinkCheckTh(float cos, float th)
         {
             if(cos >= th){
                 return 1;
@@ -86,7 +86,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
                 Debug.log("初期姿勢OK");
             }
             if(SinkCheckTh(cos2, th2) == 1){
-                DebugDirectoryBuilder.log("最深姿勢OK");
+                Debug.log("最深姿勢OK");
             }
         }
     }
