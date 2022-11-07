@@ -71,7 +71,5 @@ namespace TensorFlowLite.MoveNet
             }
             return pose;
         }
-
-        public void 
     }
 }

@@ -1,3 +1,5 @@
+using System.Reflection.PortableExecutable;
+using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -45,6 +47,26 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         drawer?.Dispose();
     }
 
+     public static int IniCheckTh(float cos, float th)
+        {
+            if(cos <= th){
+                return 1;
+            }
+            else{
+                return 0;
+           }
+        }
+
+        public static int SinkCheckTh(float cos, float th)
+        {
+            if(cos >= th){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+
     private void Update()
     {
         if (pose != null)
@@ -53,7 +75,19 @@ public class MoveNetSinglePoseSample : MonoBehaviour
             Debug.Log("左肩" + pose[5].x + "," + pose[5].y);
             Debug.Log("左手首" + pose[9].x + "," + pose[9].y);
             Debug.Log("左足首" + pose[15].x + "," + pose[15].y);
+            
+            float cos1 = 0.90;
+            float cos2 = 0.975;
+            float th1 = 0.91;
+            float th2 = 0.98;
 
+            if(IniCheckTh(cos1, th1) == 1){
+                
+                Debug.log("初期姿勢OK");
+            }
+            if(SinkCheckTh(cos2, th2) == 1){
+                DebugDirectoryBuilder.log("最深姿勢OK");
+            }
         }
     }
 
