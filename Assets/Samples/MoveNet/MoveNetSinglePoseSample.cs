@@ -110,7 +110,7 @@ private int achieve = 0;
                // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
                // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
                // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
-               Count(th_high, th_low, angle, count, acheive);
+               Count(th_high, th_low, angle, count, achieve);
                 Debug.Log("count =", count);
             }
         }
