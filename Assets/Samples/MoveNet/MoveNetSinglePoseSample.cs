@@ -73,10 +73,30 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         float CBy = By - Cy;
 
         float cos = (CAx * CBx + CAy * CBy) / ((float)System.Math.Sqrt(CAx * CAx + CAy * CAy) * (float)System.Math.Sqrt(CBx * CBx + CBy * CBy));
-
         return cos;
     }
-private float th = 0.894f;
+
+    public static void Count(float th_high, float th_low, float cos int count, int achieve)
+    {
+        if(count == 0 && cos <= th_high)
+        {
+            count++;
+        }
+        else if (count == 1 && cos >= th_low)
+        {
+            count++;
+        }
+        else if (count == 2 && cos >= th_high)
+        {
+            count = 0;
+            achieve++;
+        }
+    }
+private float th_high = 0.91f;
+private float th_low = 0.975f;
+private int count = 0;
+private int achieve = 0;
+
 
     private void Update()
     {
@@ -89,7 +109,8 @@ private float th = 0.894f;
                // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
                // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
                // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
-                Debug.Log("cos = " + angle + " > " + th + " ? : " + SinkCheckTh(angle, th));
+               Count(th_high, th_low, angle, count, acheive);
+                Debug.Log("count =", count);
             }
         }
     }
