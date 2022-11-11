@@ -111,7 +111,7 @@ private int achieve = 0;
                // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
                // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
                Count(th_high, th_low, angle, count, achieve);
-               Debug.Log("cos =" + angle + "count =" + count);
+               Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve);
                //Debug.Log("count =" + count);
             }
         }
