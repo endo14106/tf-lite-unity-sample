@@ -95,7 +95,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
 
 private float th_high = 0.91f;
 private float th_low = 0.975f;
-private int count = 0;
+private int count = 1;
 private int achieve = 0;
 
 
