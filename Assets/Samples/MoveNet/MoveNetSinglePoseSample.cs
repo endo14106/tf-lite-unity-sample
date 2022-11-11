@@ -107,12 +107,11 @@ private int achieve = 0;
             if (pose[5].score >= threshold && pose[9].score >= threshold && pose[15].score >= threshold)
             {
                 float angle = CosCulc1(pose[9].x, pose[9].y, pose[5].x, pose[5].y, pose[15].x, pose[15].y);
-                Debug.Log("cos =" + angle);
                // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
                // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
                // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
                Count(th_high, th_low, angle, count, achieve);
-                Debug.Log("count =" + count);
+               Debug.Log("count =" + count);
             }
         }
     }
