@@ -76,7 +76,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         return cos;
     }
 
-    public static void Count(float th_high, float th_low, float cos int count, int achieve)
+    public static void Count(float th_high, float th_low, float cos, int count, int achieve)
     {
         if(count == 0 && cos <= th_high)
         {
@@ -92,6 +92,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
             achieve++;
         }
     }
+
 private float th_high = 0.91f;
 private float th_low = 0.975f;
 private int count = 0;
