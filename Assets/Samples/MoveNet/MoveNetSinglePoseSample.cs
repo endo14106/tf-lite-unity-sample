@@ -1,8 +1,11 @@
+using System;
+using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using TensorFlowLite;
 using TensorFlowLite.MoveNet;
+using Debug = UnityEngine.Debug;
 
 [RequireComponent(typeof(WebCamInput))]
 public class MoveNetSinglePoseSample : MonoBehaviour
@@ -76,46 +79,67 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         return cos;
     }
 
-    public static void Count(float th_high, float th_low, float cos, int count, int achieve)
+    public static void Count(float th_high, float th_low, float th_gro, float cos, ref int count, ref int achieve)
     {
+        //count = 0 : 初期状態　何もなし
+        //count = 1 : スタート姿勢　
+        //count = 2 : 最深状態　
         if(count == 0 && cos <= th_high)
         {
             count++;
-            Debug.Log("count =" + count);
+            //Debug.Log("count =" + count);
         }
         else if (count == 1 && cos >= th_low)
         {
             count++;
-            Debug.Log("count =" + count);
+            //Debug.Log("count =" + count);
         }
-        else if (count == 2 && cos >= th_high)
+        else if (count == 2 /*&& cos <= th_high*/)
         {
-            count = 0;
-            achieve++;
-            Debug.Log("count =" + count + "achieve = " + achieve);
+            if(cos <= th_high){
+                count = 0;
+                achieve++;
+            }
+            else if(cos >= th_gro){
+                count = 0;
+            }
+            //Debug.Log("count =" + count + "achieve = " + achieve);
+        }
+        else
+        {
+            //Debug.Log("abc");
         }
     }
 
-private float th_high = 0.91f;
+private float th_high = 0.93f;
 private float th_low = 0.975f;
-private int count = 1;
-private int achieve = 0;
+private float th_gro = 0.99f;
+public int count = 0;
+public int achieve = 0;
 
 
     private void Update()
     {
         if (pose != null)
-        {
-            drawer.DrawPose(pose, threshold);
+        {   
+            if (0 <= achieve && achieve <= 100){
+                drawer.DrawPose(pose, threshold);
+            }
             if (pose[5].score >= threshold && pose[9].score >= threshold && pose[15].score >= threshold)
             {
                 float angle = CosCulc1(pose[9].x, pose[9].y, pose[5].x, pose[5].y, pose[15].x, pose[15].y);
-               // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
-               // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
-               // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
-               Count(th_high, th_low, angle, count, achieve);
-               //Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve);
-               //Debug.Log("count =" + count);
+                // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
+                // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
+                // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
+                float sub = pose[9].y - pose[15].y;
+                // Debug.Log("左手首-左足首：" + sub);
+                if(Math.Abs(sub) <= 0.035f){
+                    Count(th_high, th_low, th_gro, angle, ref count, ref achieve);
+                } else {
+                    Debug.Log("aaa");
+                }
+                Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve);
+                //Debug.Log("count =" + count);
             }
         }
     }
