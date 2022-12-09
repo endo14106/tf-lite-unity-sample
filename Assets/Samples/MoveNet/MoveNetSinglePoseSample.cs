@@ -79,11 +79,22 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         return cos;
     }
 
-    public static void Count(float th_high, float th_low, float th_gro, float cos, ref int count, ref int achieve)
+    public static float SlopeSubAbs(float SH_x, float SH_y, float HI_x, float HI_y, float AN_x, float AN_y)
+{
+    float Slope_SH = (HI_y-SH_y)/(HI_x-SH_x);
+    float Slope_HA = (AN_y-HI_y)/(AN_x-HI_x);
+
+    return Math.Abs(Slope_SH-Slope_HA);
+}
+
+
+
+    public static void Count(float th_high, float th_low, float th_gro, float th_waist, float cos, float curve, ref int count, ref int achieve)
     {
         //count = 0 : 初期状態　何もなし
         //count = 1 : スタート姿勢　
         //count = 2 : 最深状態　
+        if(curve >= th_waist) count = 0;
         if(count == 0 && cos <= th_high)
         {
             count++;
@@ -114,6 +125,8 @@ public class MoveNetSinglePoseSample : MonoBehaviour
 private float th_high = 0.93f;
 private float th_low = 0.975f;
 private float th_gro = 0.99f;
+private float th_waist = 0.6f;
+private float th_stand = 0.035f;
 public int count = 0;
 public int achieve = 0;
 
@@ -132,14 +145,14 @@ public int achieve = 0;
                 // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
                 // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
                 float sub = pose[9].y - pose[15].y;
+                float curve = SlopeSubAbs(pose[5].x, pose[5].y, pose[11].x, pose[11].y, pose[15].x, pose[15].y);
                 // Debug.Log("左手首-左足首：" + sub);
-                if(Math.Abs(sub) <= 0.035f){
-                    Count(th_high, th_low, th_gro, angle, ref count, ref achieve);
+                if(Math.Abs(sub) <= th_stand){
+                    Count(th_high, th_low, th_gro, th_waist, angle, curve, ref count, ref achieve);
                 } else {
                     Debug.Log("aaa");
                 }
-                Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve);
-                //Debug.Log("count =" + count);
+                Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve + "curve =" + curve);
             }
         }
     }
