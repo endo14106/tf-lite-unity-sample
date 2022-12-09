@@ -117,7 +117,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
     float Slope_SH = (HI_x-SH_x)/(HI_y-SH_y);
     float Slope_HA = (AN_x-HI_x)/(AN_y-HI_y);
 
-    return Math.Abs(Slope_SH-SlopeHA);
+    return Math.Abs(Slope_SH - Slope_HA);
 }
 
 private float th_high = 0.93f;
