@@ -1,3 +1,4 @@
+using System.Reflection.PortableExecutable;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -147,7 +148,7 @@ public int achieve = 0;
                     Debug.Log("aaa");
                 }
                 Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve);
-                //Debug.Log("count =" + count);
+                Debug.Log("sub = " + sub);
             }
         }
     }
