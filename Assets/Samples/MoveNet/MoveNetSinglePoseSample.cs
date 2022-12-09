@@ -85,16 +85,16 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         //count = 0 : 初期状態　何もなし
         //count = 1 : スタート姿勢　
         //count = 2 : 最深状態　
-        if(sub <= th_waist){
+        //if(sub <= th_waist){
             if(count == 0 && cos <= th_high)
             {
                 count++;
-                //Debug.Log("count =" + count);
+                //Debug.Log("In count1");
             }
             else if (count == 1 && cos >= th_low)
             {
                 count++;
-                //Debug.Log("count =" + count);
+                //Debug.Log("In count2");
             }
             else if (count == 2 /*&& cos <= th_high*/)
             {
@@ -111,7 +111,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
             {
                 //Debug.Log("abc");
             }
-        }
+        //}
     }
 
     public static float SlopeSubAbs(float SH_x, float SH_y, float HI_x, float HI_y, float AN_x, float AN_y)
@@ -151,7 +151,7 @@ public int achieve = 0;
                     Debug.Log("aaa");
                 }
                 Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve);
-                Debug.Log("sub = " + sub);
+                //Debug.Log("sub = " + sub);
             }
         }
     }
