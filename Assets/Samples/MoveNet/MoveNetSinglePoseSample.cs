@@ -111,6 +111,14 @@ public class MoveNetSinglePoseSample : MonoBehaviour
         }
     }
 
+    public static float SlopeSubAbs(float SH_x, float SH_y, float HI_x, float HI_y, float AN_x, float AN_y)
+{
+    float Slope_SH = (HI_x-SH_x)/(HI_y-SH_y);
+    float Slope_HA = (AN_x-HI_x)/(AN_y-HI_y);
+
+    return Math.Abs(Slope_SH-SlopeHA);
+}
+
 private float th_high = 0.93f;
 private float th_low = 0.975f;
 private float th_gro = 0.99f;
@@ -131,7 +139,7 @@ public int achieve = 0;
                 // Debug.Log("左肩" + pose[5].x + ", " + pose[5].y);
                 // Debug.Log("左手首" + pose[9].x + ", " + pose[9].y);
                 // Debug.Log("左足首" + pose[15].x + ", " + pose[15].y);
-                float sub = pose[9].y - pose[15].y;
+                float sub = SlopeSubAbs(pose[5].x, pose[5].y, pose[11].x, pose[11].y, pose[15].x, pose[15].y);
                 // Debug.Log("左手首-左足首：" + sub);
                 if(Math.Abs(sub) <= 0.035f){
                     Count(th_high, th_low, th_gro, angle, ref count, ref achieve);
