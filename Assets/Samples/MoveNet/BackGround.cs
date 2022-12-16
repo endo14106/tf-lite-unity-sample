@@ -17,7 +17,7 @@ public class BackGround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(move.achieve == 100)
+        if(move.achieve == 5)
         {
             Back.text = string.Format("■");
         }

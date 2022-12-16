@@ -135,7 +135,7 @@ public int achieve = 0;
     {
         if (pose != null)
         {   
-            if (0 <= achieve && achieve <= 100){
+            if (0 <= achieve && achieve <= 4){
                 drawer.DrawPose(pose, threshold);
             }
             if (pose[5].score >= threshold && pose[9].score >= threshold && pose[15].score >= threshold)
