@@ -123,7 +123,7 @@ public class MoveNetSinglePoseSample : MonoBehaviour
     }
 
 private float th_high = 0.93f;
-private float th_low = 0.975f;
+private float th_low = 0.95f;
 private float th_gro = 0.99f;
 private float th_waist = 0.6f;
 private float th_stand = 0.035f;
@@ -135,7 +135,7 @@ public int achieve = 0;
     {
         if (pose != null)
         {   
-            if (0 <= achieve && achieve <= 4){
+            if (0 <= achieve && achieve <= 29){
                 drawer.DrawPose(pose, threshold);
             }
             if (pose[5].score >= threshold && pose[9].score >= threshold && pose[15].score >= threshold)

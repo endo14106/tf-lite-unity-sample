@@ -22,7 +22,7 @@ public class GameControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(move.achieve >= 5){
+        if(move.achieve >= 30){
             //TextFrame.text = string.Format("パスワード\n" + "{0}",move.achieve);
             TextFrame.text = string.Format("Congratulations!\n パスワード\n" + "{0}",pass);
         }

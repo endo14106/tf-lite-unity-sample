@@ -19,8 +19,8 @@ public class CountAchieve : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        Achieve.text = string.Format("{0} / 5回", move.achieve);
-        if(move.achieve == 5)
+        Achieve.text = string.Format("{0} / 30回", move.achieve);
+        if(move.achieve == 30)
         {
             Achieve.enabled = false;
         }
