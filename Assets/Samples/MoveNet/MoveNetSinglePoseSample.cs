@@ -126,7 +126,7 @@ private float th_high = 0.93f;
 private float th_low = 0.95f;
 private float th_gro = 0.99f;
 private float th_waist = 0.6f;
-private float th_stand = 0.035f;
+private float th_stand = 0.1f;
 public int count = 0;
 public int achieve = 0;
 
@@ -152,7 +152,7 @@ public int achieve = 0;
                 } else {
                     Debug.Log("aaa");
                 }
-                Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve + "curve =" + curve);
+                Debug.Log("cos =" + angle + "count =" + count + "achieve = " + achieve + "curve =" + curve + "sub = " + sub);
             }
         }
     }
