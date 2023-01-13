@@ -130,7 +130,7 @@ private float th_stand = 0.1f;
 public int count = 0;
 public int achieve = 0;
 
-
+//
     private void Update()
     {
         if (pose != null)
